@@ -1,6 +1,5 @@
 <template>
     <main class="app">
-
       <section>
         <h2 class="title">
            Todo List
@@ -84,3 +83,12 @@
         todos.value = JSON.parse(localStorage.getItem('todos')) || []
     })
 </script>
+
+<style scoped>
+   .app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   }
+</style>

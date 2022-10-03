@@ -1,18 +1,19 @@
 <template>
    <div class="dashboard">
-      <TodoList></TodoList>
+      <TodoList class="todoList"></TodoList>
+      <TimerApp></TimerApp>
    </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import TodoList from './components/TodoList.vue'
+import TimerApp from './components/TimerApp.vue'
 
 </script>
 
 <style scoped>
   
-  .Todo-List {
+  .todoList {
     width: 35rem;
     height: 25rem;
     background-color: #333;
