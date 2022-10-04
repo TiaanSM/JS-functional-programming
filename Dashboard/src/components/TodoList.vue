@@ -39,14 +39,14 @@
 
 <template>
     <main class="todoList">
-      <section class="title-1">
+      <section class="main-title">
         <h2 class="title">
            Todo List
         </h2>
       </section>
 
       <section class="create-todo">
-         <h3 class="header">Create a todo</h3>
+         <h3 class="header">Create a Todo</h3>
          <form @submit.prevent="addTodo">
 
             <input 
@@ -56,25 +56,20 @@
                class="todo-input"
             />
 
-            <input type="submit" value="Add todo" class="submit">
+            <input type="submit" value="Add Todo" class="submit">
          </form>
       </section>
 
-      <section class="todo-list">
-        <h3>TODO LIST</h3>
+      <section class="list-todo">
         <div class="todo-item">
-            <div v-for="todo in todos_asc" :key="todo" :class="`todo-item ${todo.done && 'done'}`">
-
-                <label>
-                    <input type="checkbox" v-model="todo.done" />
-                </label>
+            <div class="todo-main" v-for="todo in todos_asc" :key="todo" :class="`todo-item ${todo.done && 'done'}`">
                 
                 <div class="todo-content">
                     <input type="text" v-model="todo.content" />
                 </div>
 
                 <div class="action">
-                    <button class="delete" @click="removeTodo(todo)">Delete</button>
+                    <button class="delete" @click="removeTodo(todo)">X</button>
                 </div> 
 
             </div> 
@@ -97,9 +92,9 @@
     position: relative;
    }
 
-   .title-1 {
+   .main-title {
     width: 100%;
-    height: auto;
+    height: 3rem;
     text-align: center;
     position: absolute;
     top: 0px;
@@ -111,19 +106,26 @@
     border-bottom: 2px solid black;
    }
 
-   .header {
-    width: 34.75rem;
-    height: auto;
-    color: #6F5643;
-    text-align: center;
-    position: absolute;
-    top: 53px;
-    left: 0px;
-    font-size: 1.5rem;
+   .create-todo {
+    width: 100%;
+    height: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    bottom: 3.3rem;
+    border-bottom: 2px solid black;
    }
 
-   .create-todo {
-    
+   .header {
+    width: 100%;
+    height: 2rem;
+    color: #6F5643;
+    text-align: center;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 0.5rem;
    }
 
    form {
@@ -132,18 +134,17 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: auto;
    }
 
    .todo-input {
     background-color: #d2a24c;
-    /*border: 3px solid #73bda8;*/
     width: 20rem;
     height: 3rem;
     padding: 1rem 2rem;
     border: 2px solid black;
+    font-size: 1.3rem;
     position: absolute;
-    top: 6rem;
+    top: 4rem;
    }
 
    .todo-input::placeholder {
@@ -153,27 +154,47 @@
    .submit {
     padding: 0.5rem 2rem;
     cursor: pointer;
-    color: #d2a24c;
+    color: #73bda8;
     background-color: #6F5643;
     position: absolute;
-    top: 10rem;
+    top: 8rem;
+    font-size: 1.2rem;
    }
 
-   .todo-list {
+   .list-todo {
     width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    height: 10rem;
+    position: relative;
+    bottom: 2.5rem;
    }
 
    .todo-item {
-    background-color: lightgray;
     width: 100%;
     height: auto;
-    display: flex;
    }
 
-   
+   .todo-content > input {
+    width: 30rem;
+    height: 3rem;
+    padding: 1rem;
+    font-size: 1.3rem;
+    background-color: #d2a24c;
+   }
+
+   .todo-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0rem;
+   }
+
+   .delete {
+    width: 3rem;
+    height: 3rem;
+    color: #73bda8;
+    background-color: #6f5643;
+    font-size: 1.5rem;
+    cursor: pointer;
+   }
+
 </style>
