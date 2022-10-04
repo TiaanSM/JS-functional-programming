@@ -4,7 +4,7 @@
     <label>Elapsed Time: <progress :value="elapsed / duration"></progress></label>
     <div>{{ (elapsed / 1000).toFixed(1) }}s</div>
     <div>
-        duration: <input type="range" v-model="duration" min="1" max="30000">
+        duration: <input type="range" v-model="duration" min="1" max="300000">
         {{ (duration / 1000).toFixed(1) }}s
     </div>
     <button @click="elapsed = 0">Reset</button>
@@ -14,7 +14,7 @@
 <script setup>
 import { ref, onUnmounted } from 'vue'
 
-const duration = ref(15 * 1000)
+const duration = ref(1000 * 1000)
 const elapsed = ref(0)
 
 let lastTime = performance.now()
