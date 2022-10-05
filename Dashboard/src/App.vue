@@ -1,7 +1,7 @@
 <template>
    <div class="dashboard">
       <TodoList class="todoList"></TodoList>
-      <TimerApp class="timerApp"></TimerApp>
+      <TimerApp></TimerApp>
    </div>
 </template>
 

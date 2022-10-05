@@ -1,39 +1,21 @@
 <template>
-  <main class="timerApp" v-cloak>
+  <main id="timerApp" v-cloak>
      <h1>Timer</h1>
-	  <form>
-		   <label for="min">Minutes<br />
-		    <input type="number" v-model="minutes" name="time_m" id="min" min="0" max="59">
-		   </label>
-		   <label for="sec">Secondes<br />
-			  <input type="number" v-model="secondes" name="time_s" id="sec" max="59" min="0">
-		   </label>
-		   <button type="button" @click="sendTime">Set time</button>
-	  </form>
-
+	<timer-setup v-if="!time" @set-time="setTime"></timer-setup>
+	 <div v-else>
+		 <timer :time="prettyTime"></timer>
 		 <div>
 			  <button v-if="!isRunning" @click="start">Start</button>
 			  <button v-if="isRunning" @click="stop">Stop</button>
 			  <button @click="reset">Reset</button>
 		 </div>
-
+	</div>
   </main>
 </template>
 
-<script setup>
-import { ref, onUnmounted } from 'vue'
+<script>
 
-let minutes = ref(0)
-let seconds = ref(0)
-
-const sendTime = () => {
-  this.$emit('set-time', { minutes: this.minutes, seconds: this.seconds })
-}
-
-</script>
-
-<style scoped>
-/* let timerSetup = {
+let timerSetup = {
 	template:`
 	<form>
 		 <label for="min">Minutes<br />
@@ -78,8 +60,8 @@ let Timer = {
 	}
 }
 
-let app = new Vue({
-	el:"#app",
+let timerApp = ({
+	el:"#timerApp",
 	components: {
 		 'timer-setup':timerSetup,
 		 'timer':Timer
@@ -130,29 +112,10 @@ let app = new Vue({
 			 this.time = (payload.minutes * 60 + payload.secondes)
 		 }
 	}
-}) */
+})
 
-html /*
-<h1>Timer</h1>
-	<timer-setup v-if="!time" @set-time="setTime"></timer-setup>
-	 <div v-else>
-		 <timer :time="prettyTime"></timer>
-		 <div>
-			  <button v-if="!isRunning" @click="start">Start</button>
-			  <button v-if="isRunning" @click="stop">Stop</button>
-			  <button @click="reset">Reset</button>
-		 </div>
-	</div>        <div id="app" v-cloak>
-	<h1>Timer</h1>
-	<timer-setup v-if="!time" @set-time="setTime"></timer-setup>
-	 <div v-else>
-		 <timer :time="prettyTime"></timer>
-		 <div>
-			  <button v-if="!isRunning" @click="start">Start</button>
-			  <button v-if="isRunning" @click="stop">Stop</button>
-			  <button @click="reset">Reset</button>
-		 </div>
-	</div>       
-</div>
-*/
+</script>
+
+<style scoped>
+
 </style>
