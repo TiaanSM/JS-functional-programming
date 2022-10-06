@@ -13,52 +13,10 @@
   </main>
 </template>
 
-<script>
+<script setup>
+import TimerSetup from './TimerSetup.vue'
+import Timer from './Timer.vue'
 
-let timerSetup = {
-	template:`
-	<form>
-		 <label for="min">Minutes<br />
-		 <input type="number" v-model="minutes" name="time_m" id="min" min="0" max="59">
-		 </label>
-		 <label for="sec">Secondes<br />
-			  <input type="number" v-model="secondes" name="time_s" id="sec" max="59" min="0">
-		 </label>
-		 <button type="button" @click="sendTime">Set time</button>
-	</form>`,
-	data () {
-		 return {
-			  minutes:0,
-			  secondes:0
-		 }
-	},
-	methods: {
-		 sendTime() {
-			  this.$emit('set-time', {minutes:this.minutes, secondes:this.secondes})
-		 }
-	}
-}
-
-let Timer = {
-	template: `
-		 <div class="timer">{{ time | prettify }}</div>
-	`,
-	props:['time'],
-	filters: {
-		 prettify : function(value) {
-			  let data = value.split(':')
-			  let minutes = data[0]
-			  let secondes = data[1]
-			  if (minutes < 10) {
-					minutes = "0"+minutes
-			  }
-			  if (secondes < 10) {
-					secondes = "0"+secondes
-			  }
-			  return minutes+":"+secondes
-		 }
-	}
-}
 
 let timerApp = ({
 	el:"#timerApp",
@@ -113,9 +71,4 @@ let timerApp = ({
 		 }
 	}
 })
-
 </script>
-
-<style scoped>
-
-</style>
