@@ -1,2 +1,2 @@
-# Vue.js-Todo-App
-Retro designed vue-js Todo List app.
+# Javascript functional programming
+Functional programming concepts for cleaner, testable and readable code.
