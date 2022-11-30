@@ -1,24 +1,51 @@
-const elem = tag => document.createElement(tag);
+function app(state, output, dispatch) {
+   R.compose(
+    append(view(state)),
+    clear()
+   )(output)
+    
+    const stop = dispatch((e) => {
+        stop();
+        const newText = getText();
 
-const el = R.compose(
-    addClass('bg-light'),
-    addClass('p-2')
+        const newState = [
+            ...state,
+            newText
+        ];
 
-)(elem('div'));
+        setText('');
 
-document.body.append(el);
-
-function addClass(className) {
-    return function(element) {
-        element.classList.add(className);
-        return element;
-    }
+        app(newState, output, dispatch);
+    });
+   
 }
 
-function append(node, element) {
-    element.appendChild(node);
-    return element;
+function view(state) {
+    const el = elem('div');
+
+    return state.length > 0 ? R.pipe(
+        ...state.map((content, index) => append(message(content, index)))
+    )(elem('div')) : el;
 }
+
+function message(content) {
+    return R.compose(
+        append(text(content)),
+        attr('data-message', index),
+        addClass('bg-warning'),
+        addClass('p-3')
+    
+    )(elem('div'));
+}
+
+const buttonClick = on('click', getElem('message-button'));
+
+app(
+    Object.freeze([]),
+    getElem('message-list'),
+    buttonClick()
+)
+
 
 /*
 (new Element('div'))
